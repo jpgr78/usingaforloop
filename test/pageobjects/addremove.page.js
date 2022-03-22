@@ -55,7 +55,7 @@ class DynamicLoadingPage extends Page {
 
 
         }
-        for(var j=0;j<test.but.stop;j++){
+        for(var j=0;j<test.but.stop-test.quit[i].number;j++){
             var k=j+1
             await expect($(test.but.expect+'['+k+']')).toBeExisting()
             
@@ -63,6 +63,16 @@ class DynamicLoadingPage extends Page {
 
 
         }
+        var k=test.but.stop-test.quit[i].number
+        for(var j=0;j<test.quit[i].number;j++){
+            var n=j+k+1
+            await expect($(test.but.expect+'['+n+']')).not.toBeExisting()
+            
+
+
+
+        }
+
         
     });
   }

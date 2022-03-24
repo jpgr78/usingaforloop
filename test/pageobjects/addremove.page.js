@@ -22,7 +22,7 @@ class DynamicLoadingPage extends Page {
 
   async click_more(test){
     it(test.text, async () => {
-        await this.open(test.path);
+        
         
         for(var i=0;i<test.stop;i++){
             await $(test.element).click()
@@ -41,16 +41,12 @@ class DynamicLoadingPage extends Page {
 
   async click_and_delete(test,i){
     it(test.quit[i].text, async () => {
-        await this.open(test.but.path);
         
-        for(var j=0;j<test.but.stop;j++){
-            await $(test.but.element).click()
-            
-            
-        }
+        
+        
         for(var j=0;j<test.quit[i].number;j++){
             await $(test.but.expect).click()
-           
+           browser.pause(2000)
 
 
 
@@ -66,7 +62,7 @@ class DynamicLoadingPage extends Page {
         var k=test.but.stop-test.quit[i].number
         for(var j=0;j<test.quit[i].number;j++){
             var n=j+k+1
-            await expect($(test.but.expect+'['+n+']')).not.toBeExisting()
+            await expect($(test.but.expect+'['+n+']')).not.toBeExisting();
             
 
 
@@ -81,7 +77,7 @@ class DynamicLoadingPage extends Page {
 
 
   async exist(test) {
-        it('button exist', async () => {
+        it(test.text, async () => {
         await this.open(test.path);
         await browser.pause(1000)
         await expect($(test.element)).toBeExisting();
